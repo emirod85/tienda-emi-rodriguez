@@ -13,7 +13,7 @@ return (
     
   
         <NavBar />
-        <ItemListContainer name='Un pato' price='55' greeting= {greeting} />
+        <ItemListContainer greeting= {greeting} />
      
     </div>
   )
