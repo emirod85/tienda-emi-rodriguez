@@ -38,9 +38,9 @@ const NavBar = () => {
                         </svg>
                     </a>
                     
-                    <CartWidget/>
 
                 </Navbar.Collapse>
+                    <CartWidget/>
             </Container>
         </Navbar>
 

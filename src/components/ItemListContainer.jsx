@@ -1,5 +1,7 @@
 import ItemList from "./ItemList"
 import { useEffect, useState } from "react"
+import { Spinner } from "react-bootstrap";
+import ItemDetailContainer from "./ItemDetailContainer";
 
 const arrayProductos = [
   { id : 1, category : 'remeras' , description : 'remera gris' , price : 14 , pictureUrl : '' , stock : 8},
@@ -12,31 +14,21 @@ const arrayProductos = [
   { id : 8, category : 'pantalones' , description : 'jean azul' , price : 40 , pictureUrl : '' , stock : 9}
 ]
 
-  
-  const getFetch = new Promise((resolve) => {
-  setTimeout(() => {
-    resolve(arrayProductos)
-  }, 2000);
-  })
-
-
-
-
 const ItemListContainer = ({ greeting}) => {
 
   const [productos, setProductos] = useState([])
-  
-  
-  //llamada a la API (const productos)
-  useEffect(() => {
+  const [loader,setLoader] = useState(true);
 
-  getFetch
-  .then(
-    callProductos => setProductos(callProductos)
-    )
-  .catch(err => (console.log(err)))
-  
-}, [])
+
+useEffect(()=>{
+
+  fetch("../../public/data/data.json")
+  .then(response => response.json())
+  .then(response=>setProductos(response))
+  .catch(err => console.log(err))
+  .finally(() => setLoader(false))
+
+},[])
 
 
   return (
@@ -45,8 +37,9 @@ const ItemListContainer = ({ greeting}) => {
         {greeting}
     </h2>
 
- <ItemList items = {productos} /> 
-   
+<ItemDetailContainer />
+{loader? <> <h2>Cargando...</h2> <Spinner animation="border" variant="primary" /> </>: <ItemList items={productos}  />}
+
 </>
   )
 }
