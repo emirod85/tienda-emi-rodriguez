@@ -1,24 +1,46 @@
 import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
 import { Spinner } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+  
+
 
 export default function ItemDetailContainer() {
   const [item, setItem] = useState({});
   const [loader, setLoader] = useState(true);
-  const id = 7;
+  const {idDetail} = useParams()
+
+  
+
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch("../../public/data/data.json")
-        .then((response) => response.json())
-        .then((itemsList) => itemsList.find((el) => el.id === id))
-        .then((data) => setItem(data))
-        .catch((err) => console.log(err))
-        .finally(() => setLoader(false));
-    }, 2000);
-  }, []);
+    
+    if (idDetail) {
+      
+      setTimeout(() => {
+        setLoader(true)
+        fetch("../../public/data/data.json")
+          .then((response) => response.json())
+          .then((itemsList) => itemsList.find((el) => el.id === idDetail))
+          .then((data) => setItem(data))
+          .catch((err) => console.log(err))
+          .finally(() => setLoader(false));
+      }, 1000);
 
-  console.log(item);
+    } else {
+      
+      fetch("/data/data.json")
+      .then(response => response.json())
+      .then(response=>setProductos(response))
+      .catch(err => console.log(err))
+      .finally(() => setLoader(false))
+
+    }
+
+  }, [idDetail]);
+
+
+
 
   return (
     <div className="itemDetailContainer">

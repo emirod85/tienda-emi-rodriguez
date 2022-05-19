@@ -1,9 +1,10 @@
-import ItemCount from "./ItemCount"
-import { Card } from "react-bootstrap";
+
+import { Button, Card } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 const Item = ({props}) => {
 
-  const { id, category, description, price, pictureUrl, stock } = props;
+  const { id, description, price, pictureUrl, stock } = props;
 
   return (
     <div key = {id}>
@@ -11,15 +12,16 @@ const Item = ({props}) => {
            <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={pictureUrl} />
                 <Card.Body>
-                    <Card.Title>{description}</Card.Title>
-                    <Card.Text>
-                      <h3>id: {id}</h3>
-                        <h2>Detalle del producto:</h2>
-                        <h3>Categoria: {category}</h3>
-                        <h3>Precio: {price}</h3>
-                        <h3>Stock: {stock}</h3>
+                    <Card.Title><h2>{description}</h2></Card.Title>
+                    <Card.Text>                 
+                        <h3>Precio: ${price}</h3>
+                        <h3>Stock: {stock} unidades</h3>
                     </Card.Text>
-                    <ItemCount id = {id} description = {description} price = {price} stock = {stock} initial={1} onAdd={(quantity)=>console.log(`${quantity} unidad/es de ${description} agregada/s al pedido`)}/>
+
+                    <Link to={`/item/${props.id}`}>
+                      <Button>Comprar</Button>
+                    </Link>
+
                 </Card.Body>
             </Card>
 

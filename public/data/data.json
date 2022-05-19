@@ -1,5 +1,5 @@
 [{
-		"id": 1,
+		"id": "1",
 		"category": "remeras",
 		"description": "remera gris",
 		"price": 14,
@@ -7,7 +7,7 @@
 		"stock": 8
 	},
 	{
-		"id": 2,
+		"id": "2",
 		"category": "remeras",
 		"description": "remera roja",
 		"price": 22,
@@ -15,7 +15,7 @@
 		"stock": 4
 	},
 	{
-		"id": 3,
+		"id": "3",
 		"category": "remeras",
 		"description": "remera azul",
 		"price": 17,
@@ -23,7 +23,7 @@
 		"stock": 12
 	},
 	{
-		"id": 4,
+		"id": "4",
 		"category": "gorras",
 		"description": "gorra verde",
 		"price": 25,
@@ -31,15 +31,15 @@
 		"stock": 3
 	},
 	{
-		"id": 5,
+		"id": "5",
 		"category": "gorras",
 		"description": "gorra blanca",
 		"price": 23,
-		"pictureUrl": "https://www.regalopublicidad.com/images/sd48i/0989a241c28cd29b0c537be78b36/610-460/gorra-basica-para-ninos-con-cierre-de-velcro-blanca-con-logo.jpg",
+		"pictureUrl": "https://thumbs.dreamstime.com/b/gorra-blanca-de-b%C3%A9isbol-ilustraci%C3%B3n-realista-del-vector-vista-lateral-dise%C3%B1o-160821398.jpg",
 		"stock": 6
 	},
 	{
-		"id": 6,
+		"id": "6",
 		"category": "gorras",
 		"description": "gorra negra",
 		"price": 20,
@@ -47,7 +47,7 @@
 		"stock": 20
 	},
 	{
-		"id": 7,
+		"id": "7",
 		"category": "pantalones",
 		"description": "pantalon gris",
 		"price": 35,
@@ -55,7 +55,7 @@
 		"stock": 7
 	},
 	{
-		"id": 8,
+		"id": "8"	,
 		"category": "pantalones",
 		"description": "jean azul",
 		"price": 40,
