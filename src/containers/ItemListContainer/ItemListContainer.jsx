@@ -1,10 +1,10 @@
-import ItemList from "./ItemList"
+import ItemList from "../../components/ItemList/ItemList";
 import { useEffect, useState } from "react"
 import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 
-const ItemListContainer = ({ greeting}) => {
+const ItemListContainer = ({ greeting }) => {
 
   const [productos, setProductos] = useState([])
   const [loader,setLoader] = useState(true);
@@ -18,7 +18,7 @@ if (cat) {
   setLoader(true)
   setTimeout(()=>{
 
-    fetch("/data/data.json")
+    fetch("../../../assets/data/data.json")
       .then(response => response.json())
       .then(response=>setProductos(response.filter((prods)=>prods.category === cat)))
       .catch(err => console.log(err))
@@ -29,7 +29,7 @@ if (cat) {
   setLoader(true)
   setTimeout(()=>{
 
-    fetch("/data/data.json")
+    fetch("../../../assets/data/data.json")
       .then(response => response.json())
       .then(response=>setProductos(response))
       .catch(err => console.log(err))

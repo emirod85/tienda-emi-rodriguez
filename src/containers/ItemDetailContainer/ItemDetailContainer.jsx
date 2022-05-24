@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import ItemDetail from "./ItemDetail";
+import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-  
 
 
 export default function ItemDetailContainer() {
@@ -11,15 +10,11 @@ export default function ItemDetailContainer() {
   const {idDetail} = useParams()
 
   
-
-
   useEffect(() => {
-    
-    if (idDetail) {
-      
+          
       setTimeout(() => {
         setLoader(true)
-        fetch("../../public/data/data.json")
+        fetch("../../../assets/data/data.json")
           .then((response) => response.json())
           .then((itemsList) => itemsList.find((el) => el.id === idDetail))
           .then((data) => setItem(data))
@@ -27,18 +22,7 @@ export default function ItemDetailContainer() {
           .finally(() => setLoader(false));
       }, 1000);
 
-    } else {
-      
-      fetch("/data/data.json")
-      .then(response => response.json())
-      .then(response=>setProductos(response))
-      .catch(err => console.log(err))
-      .finally(() => setLoader(false))
-
-    }
-
   }, [idDetail]);
-
 
 
 

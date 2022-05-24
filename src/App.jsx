@@ -1,9 +1,9 @@
 // import './App.css'
-import NavBar from './components/NavBar'
-import ItemListContainer from './components/ItemListContainer'
+import NavBar from './components/NavBar/NavBar'
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
-import ItemDetailContainer from './components/ItemDetailContainer'
-import Cart from './components/Cart'
+import ItemDetailContainer from './containers/ItemDetailContainer/ItemDetailContainer'
+import Cart from './components/Cart/Cart'
+import ItemListContainer from './containers/ItemListContainer/ItemListContainer'
 
 function App() {
   // const [count, setCount] = useState(0)
