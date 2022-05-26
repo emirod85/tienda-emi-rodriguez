@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/esm/Button"
 import { Link } from "react-router-dom"
 
-const ActionButton = ({item, quantity}) => {
+const ActionButton = ({item}) => {
   return (
     <div>
         <h1 >Enhorabuena! Has agregado {item.description} al carrito.</h1>

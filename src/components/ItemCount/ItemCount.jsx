@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 
-export default function ItemCount({price, name, stock, initial, onAdd}) {
+export default function ItemCount({price, description, stock, initial, onAdd}) {
     
     const [quantity, setQuantity] = useState(initial);
 
@@ -22,10 +22,10 @@ export default function ItemCount({price, name, stock, initial, onAdd}) {
         } 
     }
 
-    function addToCart(quantity) {
-        onAdd();
-        // console.log(`${quantity} unidad/es de ${description} agregada/s al pedido`)
-        console.log(quantity)
+    function addToCartt() {
+        onAdd(quantity);
+        alert(`${quantity} unidad/es de ${description} agregada/s al pedido`)
+        
     }
 
     return (
@@ -41,7 +41,7 @@ export default function ItemCount({price, name, stock, initial, onAdd}) {
                    
             <div>
 
-                <Button  onClick={addToCart}>Agregar al carrito</Button>
+                <Button variant="success" onClick={addToCartt}>Agregar al carrito</Button>
 
                 <Link to={'/'}>
                     <Button>Volver</Button>

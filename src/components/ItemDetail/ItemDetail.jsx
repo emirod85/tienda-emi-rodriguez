@@ -2,18 +2,26 @@ import Card from 'react-bootstrap/Card'
 import ItemCount from '../ItemCount/ItemCount';
 import ActionButton from '../ActionButton/ActionButton';
 import {useState} from 'react'
+import { useCartContext } from '../../context/CartContext';
+
+
 
 export default function ItemDetail({item}) {
 
     const [button, setButton] = useState('buyButton')
     
+    const {cartList, addToCart} = useCartContext()
     
-    const onAdd =()=>{
 
+    const onAdd = (cantidad) =>{
+        // console.log(cantidad)
         setButton('action')
+
+        addToCart( { ...item, cantidad } )
     }
     
     
+    console.log(cartList)
     
     return (
         <div key={item.id} className="itemDetail">
