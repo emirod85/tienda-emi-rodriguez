@@ -41,15 +41,21 @@ if (cat) {
 
 
   return (
-<>
-    <h2 className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
-        {greeting}
-    </h2>
+  <>
+      <h2 className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
+          {greeting}
+      </h2>
 
 
-{loader? <> <h2>Cargando...</h2> <Spinner animation="border" variant="primary" /> </>: <ItemList items={productos}  />}
+      {
+        loader 
+        ? 
+        <> <h2>Cargando...</h2> <Spinner animation="border" variant="primary" /> </> 
+        :
+        <ItemList items={productos}  />
+      }
 
-</>
+  </>
   )
 }
 

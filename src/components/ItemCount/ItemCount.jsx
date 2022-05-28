@@ -9,17 +9,9 @@ export default function ItemCount({price, description, stock, initial, onAdd}) {
     
     const [quantity, setQuantity] = useState(initial);
 
-    function increase() {
-        if (quantity < stock) {
-            setQuantity(quantity + 1);
-        } 
-    }
 
-    function decrease() {
-        if (quantity > 1) {
-            setQuantity(quantity - 1);
-            console.log(quantity)
-        } 
+    function addCount(num) {
+        setQuantity(quantity + num)
     }
 
     function addToCartt() {
@@ -32,11 +24,21 @@ export default function ItemCount({price, description, stock, initial, onAdd}) {
         <div className="itemCount flex row">
             <div className=''>
                 <h2>Cantidad</h2>
-                <Button id='less' className="itemCount__minusBtn" onClick={decrease}>-</Button>
+                <Button 
+                    id='less' 
+                    className="itemCount__minusBtn" 
+                    onClick={()=>addCount(-1)}
+                    disabled={quantity === 1 ? true : false}
+                    >-</Button>
 
                 <span className="itemCount__quantity">{quantity}</span>
                 
-                <Button id='plus' className="itemCount__plusBtn" onClick={increase}>+</Button>
+                <Button 
+                    id='plus' 
+                    className="itemCount__plusBtn" 
+                    onClick={()=>addCount(1)}
+                    disabled={quantity === stock ? true : false}
+                    >+</Button>
             </div>
                    
             <div>

@@ -17,7 +17,7 @@ export default function ItemDetail({item}) {
         // console.log(cantidad)
         setButton('action')
 
-        addToCart( { ...item, cantidad } )
+        addToCart( { ...item, cantidad: cantidad } )
     }
     
     

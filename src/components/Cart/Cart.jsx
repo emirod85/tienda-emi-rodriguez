@@ -1,7 +1,7 @@
 import { Button, Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { useCartContext } from "../../context/CartContext"
-         
+
 
 
 const Cart = () => {

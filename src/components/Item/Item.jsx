@@ -18,7 +18,7 @@ const Item = ({props}) => {
                         <h3>Stock: {stock} unidades</h3>
                     </Card.Text>
 
-                    <Link to={`/item/${props.id}`}>
+                    <Link to={`/item/${id}`}>
                       <Button>Comprar</Button>
                     </Link>
 

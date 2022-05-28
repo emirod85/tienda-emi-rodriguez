@@ -1,6 +1,10 @@
-
+import { useCartContext } from "../../context/CartContext"
+        
 
 const CartWidget = () => {
+
+   const {cartList} = useCartContext()
+
   return (
     <>
         <a className="pl-3 inline-block no-underline hover:text-black" href="#">
@@ -12,6 +16,8 @@ const CartWidget = () => {
                   <circle cx="17.5" cy="18.5" r="1.5" />
               
               </svg>
+
+              <span>{cartList.length}</span>
 
             
         </a>

@@ -23,7 +23,7 @@ const CartContextProvider = ({children}) => {
     // }
     
     
-    function addToCart(item) {
+    function addToCart(item, cantidad) {
 
         if (cartList.some(el => el.item.id === item.id)) {
 
@@ -32,7 +32,7 @@ const CartContextProvider = ({children}) => {
             const newCartList = cartList;
 
             newCartList[i].item.cantidad += item.cantidad;
-            
+
             setCartList(newCartList);
 
         } else {
