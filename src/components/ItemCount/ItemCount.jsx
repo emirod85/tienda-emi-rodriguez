@@ -14,11 +14,6 @@ export default function ItemCount({price, description, stock, initial, onAdd}) {
         setQuantity(quantity + num)
     }
 
-    function addToCartt() {
-        onAdd(quantity);
-        alert(`${quantity} unidad/es de ${description} agregada/s al pedido`)
-        
-    }
 
     return (
         <div className="itemCount flex row">
@@ -43,7 +38,7 @@ export default function ItemCount({price, description, stock, initial, onAdd}) {
                    
             <div>
 
-                <Button variant="success" onClick={addToCartt}>Agregar al carrito</Button>
+                <Button variant="success" onClick={()=>onAdd(quantity)}>Agregar al carrito</Button>
 
                 <Link to={'/'}>
                     <Button>Volver</Button>

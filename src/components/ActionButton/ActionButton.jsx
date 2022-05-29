@@ -14,7 +14,7 @@ const ActionButton = ({item}) => {
 
         <Link to={'/cart'}>
             <Button>
-                Ir al Carrito
+                Finalizar mi compra
             </Button> 
         </Link>
      

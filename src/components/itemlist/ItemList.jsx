@@ -4,9 +4,9 @@ import Item from "../Item/Item"
 const ItemList = ({items}) => {
 
   return (
-    <div>
+    <div key={""}>
 
- {items.map((prod)=> < Item props = {prod}/>)}
+        {items.map((prod)=> < Item props = {prod}/>)}
 
     </div>
   )
