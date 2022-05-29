@@ -2,53 +2,71 @@ import ItemList from "../../components/ItemList/ItemList";
 import { useEffect, useState } from "react"
 import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import {getFirestore, doc, getDoc} from 'firebase/firestore'
+import {getFirestore, doc, getDoc, getDocs, collection, query, where} from 'firebase/firestore'
 
 
 const ItemListContainer = ({ greeting }) => {
 
   const [productos, setProductos] = useState([])
-  const [producto, setProducto] = useState({})
+  
   const [loader,setLoader] = useState(true);
 
   const {cat} = useParams() //usamos useParams para capturar la url que aparezca en el navegador
 
 
-//   useEffect(() => {
-   
-//   const db = getFirestore()
-//   const dbQuery = doc(db, 'items', 'OZHNws2Ej0JvAYYQE2tH')
-//   getDoc(dbQuery)
-//     .then(resp => setProducto({id: resp.id, ...resp.data()}))
-//   }, [])
-
-// console.log(producto)
 
 useEffect(()=>{
-if (cat) {
-  setLoader(true)
-  setTimeout(()=>{
 
-    fetch("../../../assets/data/data.json")
-      .then(response => response.json())
-      .then(response=>setProductos(response.filter((prods)=>prods.category === cat)))
-      .catch(err => console.log(err))
-      .finally(() => setLoader(false))
-  },1000)
-  
-} else {
-  setLoader(true)
-  setTimeout(()=>{
+const db = getFirestore()
+const queryCollection = collection(db, 'items')
 
-    fetch("../../../assets/data/data.json")
-      .then(response => response.json())
-      .then(response=>setProductos(response))
-      .catch(err => console.log(err))
-      .finally(() => setLoader(false))
-  },1000)
+if(cat) {
+  setLoader(true)
+  const queryCollectionFilter = query(queryCollection, where('category', '==' , cat))
+  getDocs(queryCollectionFilter)
+    .then(resp => setProductos(resp.docs.map(item=>({id: item.id, ...item.data()}))))
+    .catch(err => console.log(err))
+    .finally(() => setLoader(false))
+
+}else{
+  setLoader(true)
+  getDocs(queryCollection)
+    .then(resp => setProductos(resp.docs.map(item=>({id: item.id, ...item.data()}))))
+    .catch(err => console.log(err))
+    .finally(() => setLoader(false))
 }
-
 },[cat])
+
+
+
+
+
+
+// useEffect(()=>{
+// if (cat) {
+//   setLoader(true)
+//   setTimeout(()=>{
+
+//     fetch("../../../assets/data/data.json")
+//       .then(response => response.json())
+//       .then(response=>setProductos(response.filter((prods)=>prods.category === cat)))
+//       .catch(err => console.log(err))
+//       .finally(() => setLoader(false))
+//   },1000)
+  
+// } else {
+//   setLoader(true)
+//   setTimeout(()=>{
+
+//     fetch("../../../assets/data/data.json")
+//       .then(response => response.json())
+//       .then(response=>setProductos(response))
+//       .catch(err => console.log(err))
+//       .finally(() => setLoader(false))
+//   },1000)
+// }
+
+// },[cat])
 
 
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { getDoc, doc, getFirestore } from "firebase/firestore";
 
 
 export default function ItemDetailContainer() {
@@ -10,19 +11,30 @@ export default function ItemDetailContainer() {
   const {idDetail} = useParams()
 
   
-  useEffect(() => {
-          
-      setTimeout(() => {
+   useEffect(() => {
         setLoader(true)
-        fetch("../../../assets/data/data.json")
-          .then((response) => response.json())
-          .then((itemsList) => itemsList.find((el) => el.id === idDetail))
-          .then((data) => setItem(data))
-          .catch((err) => console.log(err))
-          .finally(() => setLoader(false));
-      }, 1000);
+        const db = getFirestore();
+        const dbQuery = doc(db, 'items', idDetail);
+        getDoc(dbQuery)
+        .then(resp => setItem({id: resp.id, ...resp.data()}))
+        .catch(err => console.log(err))
+        .finally(() => setLoader(false))
+    },[idDetail]); //me parece que no hace falta poner idDetail aqui, funciona de todas formas
 
-  }, [idDetail]);
+
+  // useEffect(() => {
+          
+  //     setTimeout(() => {
+  //       setLoader(true)
+  //       fetch("../../../assets/data/data.json")
+  //         .then((response) => response.json())
+  //         .then((itemsList) => itemsList.find((el) => el.id === idDetail))
+  //         .then((data) => setItem(data))
+  //         .catch((err) => console.log(err))
+  //         .finally(() => setLoader(false));
+  //     }, 1000);
+
+  // }, [idDetail]);
 
 
 

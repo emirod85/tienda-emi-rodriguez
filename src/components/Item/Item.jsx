@@ -7,8 +7,9 @@ const Item = ({props}) => {
   const { id, description, price, pictureUrl, stock } = props;
 
   return (
-    <div key = {id}>
+    <div key = {props.id}>
 
+        <Link to={`/item/${id}`}>
            <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={pictureUrl} />
                 <Card.Body>
@@ -18,12 +19,11 @@ const Item = ({props}) => {
                         <h3>Stock: {stock} unidades</h3>
                     </Card.Text>
 
-                    <Link to={`/item/${id}`}>
                       <Button>Comprar</Button>
-                    </Link>
 
                 </Card.Body>
             </Card>
+        </Link>
 
     </div>
   )
