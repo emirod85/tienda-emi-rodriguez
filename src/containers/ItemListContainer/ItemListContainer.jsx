@@ -13,7 +13,7 @@ const ItemListContainer = ({ greeting }) => {
 
   const {cat} = useParams() //usamos useParams para capturar la url que aparezca en el navegador
 
-
+ 
 
 useEffect(()=>{
 
