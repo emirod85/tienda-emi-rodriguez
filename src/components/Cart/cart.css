@@ -1,0 +1,92 @@
+.cartContainer{
+    padding-bottom: 100px;
+}
+
+.emptyCartDiv{
+display: flex;
+flex-direction:column;
+align-items: center;
+padding-top: 50px;
+}
+
+.cartTitle{
+    margin-left: 75px;
+    margin-top: 25px;
+font-weight: 900;
+font-size: 13px;
+color: #01154B;
+}
+
+.goShoppingBtn{
+
+    border-radius: 5px;
+background-color: #01154B;
+width: 180px;
+height:44px;
+border:none;
+color: white;
+padding: 0 15px 0 15px;
+margin-top: 25px;
+}
+
+.goShoppingBtn:hover{
+
+    border-radius: 5px;
+background-color: white;
+width: 180px;
+height:44px;
+border:solid 2px #01154B;
+color: #01154B;
+padding: 0 15px 0 15px;
+}
+
+.imgAlert{
+    margin-bottom: 25px;
+}
+
+.goBackBtn{
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    align-content:flex-end;
+    color: #01154B;
+    margin-top: 25px;
+}
+
+.sendContainer{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 70vh;
+}
+
+.sentImg{
+    width: 100px;
+}
+
+.congrats{
+    font-size: 14px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color:#01154B;
+}
+
+.orderStyle{
+    font-size: 14px;
+    margin-top: 0px;
+    color:#01154B;
+   
+}
+
+.sendStyle{
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 0px;
+    color:#01154B;
+}
+
+.idColor{
+    color:#36d470
+}

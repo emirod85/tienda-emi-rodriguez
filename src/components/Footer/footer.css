@@ -1,0 +1,32 @@
+.footerStyle{
+display: flex;
+background-color: rgb(1, 21, 75);
+/* box-shadow: ; */
+justify-content: center;
+align-items: flex-end;
+/* display:flex; */
+width: 100%;
+position: fixed;
+bottom: 0;
+height: 50px;
+margin-top: 20px;
+z-index: 2;
+
+
+}
+
+.shadow{
+
+
+box-shadow: 25px 25px 40px 0px rgba(0, 0, 0, 0.746);
+}
+
+
+.footerText{
+    width: 350px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    /* text-align: center; */
+    font-size: 12px;
+    text-align: center;
+}

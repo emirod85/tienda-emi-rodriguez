@@ -1,21 +1,20 @@
-import Button from "react-bootstrap/esm/Button"
 import { Link } from "react-router-dom"
+import '../ItemCount/ItemCount.css'
 
-const ActionButton = ({item}) => {
+const ActionButton = () => {
   return (
     <div>
-        <h1 >Enhorabuena! Has agregado {item.description} al carrito.</h1>
-
-        <Link to={'/'}>
-            <Button>
-                Seguir comprando
-            </Button> 
+     
+        <Link to={'/products'}>
+            <button className='btnCkout'>
+                KEEP SHOPPING
+            </button> 
         </Link>
 
         <Link to={'/cart'}>
-            <Button>
-                Ir al carrito
-            </Button> 
+            <button className='btnCkout'>
+                CHECK OUT
+            </button> 
         </Link>
      
         

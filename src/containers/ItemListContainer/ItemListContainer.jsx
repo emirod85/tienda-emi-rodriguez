@@ -2,90 +2,59 @@ import ItemList from "../../components/ItemList/ItemList";
 import { useEffect, useState } from "react"
 import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import {getFirestore, doc, getDoc, getDocs, collection, query, where} from 'firebase/firestore'
+import {getFirestore, getDocs, collection, query, where} from 'firebase/firestore'
+import './ItemListContainer.css'
 
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
 
-  const [productos, setProductos] = useState([])
-  
+  const [productos, setProductos] = useState([]);
   const [loader,setLoader] = useState(true);
-
-  const {cat} = useParams() //usamos useParams para capturar la url que aparezca en el navegador
-
- 
+  const {cat} = useParams();
+  const title =  cat ? cat.toUpperCase() : "ALL PRODUCTS"
+  
 
 useEffect(()=>{
 
-const db = getFirestore()
-const queryCollection = collection(db, 'items')
-
-if(cat) {
   setLoader(true)
-  const queryCollectionFilter = query(queryCollection, where('category', '==' , cat))
-  getDocs(queryCollectionFilter)
-    .then(resp => setProductos(resp.docs.map(item=>({id: item.id, ...item.data()}))))
-    .catch(err => console.log(err))
-    .finally(() => setLoader(false))
 
-}else{
-  setLoader(true)
-  getDocs(queryCollection)
-    .then(resp => setProductos(resp.docs.map(item=>({id: item.id, ...item.data()}))))
-    .catch(err => console.log(err))
-    .finally(() => setLoader(false))
-}
-},[cat])
+  const db = getFirestore()
+  const queryCollection = collection(db, 'items')
 
+  const queryCollectionFilter = cat ? query(queryCollection, where('category', '==' , cat)) : queryCollection
 
-
-
-
-
-// useEffect(()=>{
-// if (cat) {
-//   setLoader(true)
-//   setTimeout(()=>{
-
-//     fetch("../../../assets/data/data.json")
-//       .then(response => response.json())
-//       .then(response=>setProductos(response.filter((prods)=>prods.category === cat)))
-//       .catch(err => console.log(err))
-//       .finally(() => setLoader(false))
-//   },1000)
   
-// } else {
-//   setLoader(true)
-//   setTimeout(()=>{
-
-//     fetch("../../../assets/data/data.json")
-//       .then(response => response.json())
-//       .then(response=>setProductos(response))
-//       .catch(err => console.log(err))
-//       .finally(() => setLoader(false))
-//   },1000)
-// }
-
-// },[cat])
-
+  getDocs(queryCollectionFilter)
+  .then(resp => setProductos(resp.docs.map(item=>({id: item.id, ...item.data()}))))
+  .catch(err => console.log(err))
+  .finally(() => setLoader(false))
+  
+},[cat])
 
 
   return (
   <>
-      <h2 className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
-          {greeting}
-      </h2>
-
-
+      
       {
         loader 
         ? 
-        <> <h2>Cargando...</h2> <Spinner animation="border" variant="primary" /> </> 
+        <div className='listContSpinner'> <Spinner className='spinnerStyle' animation="border" variant="primary" /> </div> 
         :
-        <ItemList items={productos}  />
+        <div className="itemListContainer">
+
+            <div className='titleContainer'>
+                <h1 className='titleStyle'>
+                  {title}
+                </h1>
+            </div>
+
+            <ItemList items={productos}  />
+
+        </div>
       }
 
   </>
+  
   )
 }
 

@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+
 const firebaseConfig = {
   apiKey: "AIzaSyD4Df4i2I8U735OSlxjBawMlK4pqvIGk2k",
   authDomain: "ecommerce-remi.firebaseapp.com",

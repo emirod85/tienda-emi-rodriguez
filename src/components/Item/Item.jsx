@@ -1,31 +1,37 @@
 
-import { Button, Card } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import './item.css'
 
 const Item = ({props}) => {
 
-  const { id, description, price, pictureUrl, stock } = props;
+  const { id, description, price, pictureUrl, stock, title, subtitle, category } = props;
 
   return (
-    <div key = {props.id}>
+    <>
+          
+          <div className='itemContainer' key = {id}>
+         
+            <img className='img' variant="top" src={pictureUrl} />
+            
+                <h2 className='title'>{title}</h2>
+                <h2 className='subtitle'>{subtitle}</h2>
+                <h3 className='category'>{category}</h3>
+                          
+                <h3 className='price'>U$D {price}</h3>
 
-        <Link to={`/item/${id}`}>
-           <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={pictureUrl} />
-                <Card.Body>
-                    <Card.Title><h2>{description}</h2></Card.Title>
-                    <Card.Text>                 
-                        <h3>Precio: ${price}</h3>
-                        <h3>Stock: {stock} unidades</h3>
-                    </Card.Text>
+      <Link className='none' to={`/item/${id}`}>
+                <button className='itemButton'>VIEW MORE</button>
+      </Link>
+                  
+                <h3 className='stock'>Stock: {stock} units</h3>
+            
 
-                      <Button>Comprar</Button>
 
-                </Card.Body>
-            </Card>
-        </Link>
+            
+          </div>
 
-    </div>
+    </>
+
   )
 }
 

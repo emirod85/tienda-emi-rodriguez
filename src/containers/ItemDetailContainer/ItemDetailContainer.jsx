@@ -3,7 +3,7 @@ import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { getDoc, doc, getFirestore } from "firebase/firestore";
-
+import './itemDetailContainer.css'
 
 export default function ItemDetailContainer() {
   const [item, setItem] = useState({});
@@ -13,28 +13,17 @@ export default function ItemDetailContainer() {
   
    useEffect(() => {
         setLoader(true)
+
         const db = getFirestore();
         const dbQuery = doc(db, 'items', idDetail);
+
         getDoc(dbQuery)
         .then(resp => setItem({id: resp.id, ...resp.data()}))
         .catch(err => console.log(err))
         .finally(() => setLoader(false))
-    },[idDetail]); //me parece que no hace falta poner idDetail aqui, funciona de todas formas
 
+    },[idDetail]);
 
-  // useEffect(() => {
-          
-  //     setTimeout(() => {
-  //       setLoader(true)
-  //       fetch("../../../assets/data/data.json")
-  //         .then((response) => response.json())
-  //         .then((itemsList) => itemsList.find((el) => el.id === idDetail))
-  //         .then((data) => setItem(data))
-  //         .catch((err) => console.log(err))
-  //         .finally(() => setLoader(false));
-  //     }, 1000);
-
-  // }, [idDetail]);
 
 
 
@@ -42,10 +31,14 @@ export default function ItemDetailContainer() {
     <div className="itemDetailContainer">
       {loader ? (
         <>
-          <h2>Cargando...</h2> <Spinner animation="border" variant="primary" />
+            <Spinner className='spinnerStyle' animation="border" variant="secondary" />
+            
         </>
       ) : (
+        <>
+        
         <ItemDetail item={item} />
+        </>
       )}
     </div>
   );

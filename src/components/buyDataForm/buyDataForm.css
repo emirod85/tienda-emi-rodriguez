@@ -1,0 +1,22 @@
+.form{
+}
+
+.inputStyle{
+    border:none;
+    width: 100%;
+    border-radius: 5px; 
+    height: 35px;
+    font-size: 11px;
+    background-color: #E5E5E5;
+    margin-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #01154B;
+    font-weight: 600;
+}
+
+.inputComment{
+    height: 200px;
+    padding-top: 10px;
+   
+}

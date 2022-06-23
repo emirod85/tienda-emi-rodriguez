@@ -1,14 +1,14 @@
 import { useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
 import './ItemCount.css';
-import Button from 'react-bootstrap/Button'
-import { Link } from 'react-router-dom';
 
 
-
-export default function ItemCount({price, description, stock, initial, onAdd}) {
+export default function ItemCount({stock, initial, onAdd}) {
     
     const [quantity, setQuantity] = useState(initial);
-
+    const history = useNavigate()
+    const goBack = "<< GO BACK"
+    const goBackHandle = ()=>{history(-1)}
 
     function addCount(num) {
         setQuantity(quantity + num)
@@ -16,33 +16,36 @@ export default function ItemCount({price, description, stock, initial, onAdd}) {
 
 
     return (
-        <div className="itemCount flex row">
-            <div className=''>
-                <h2>Cantidad</h2>
-                <Button 
+        <div className="itemCount">
+            <div className='countBtn'>
+                
+                <button 
                     id='less' 
-                    className="itemCount__minusBtn" 
+                    className="minusBtn" 
                     onClick={()=>addCount(-1)}
                     disabled={quantity === 1 ? true : false}
-                    >-</Button>
+                    >-</button>
 
-                <span className="itemCount__quantity">{quantity}</span>
+                <span className="countQty">{quantity}</span>
                 
-                <Button 
+                <button 
                     id='plus' 
-                    className="itemCount__plusBtn" 
+                    className="plusBtn" 
                     onClick={()=>addCount(1)}
                     disabled={quantity === stock ? true : false}
-                    >+</Button>
+                    >+</button>
             </div>
+            
+            <button className='onAddBtn' variant="success" onClick={()=>onAdd(quantity)}>ADD TO CART</button>
                    
-            <div>
+            <div className='btnAlign'>
 
-                <Button variant="success" onClick={()=>onAdd(quantity)}>Agregar al carrito</Button>
 
-                <Link to={'/'}>
-                    <Button>Volver</Button>
-                </Link>
+                
+                    <h2 className='goBackBtn' onClick={goBackHandle} >
+                        {goBack}
+                    </h2>
+               
                     
             </div>
             

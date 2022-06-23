@@ -1,133 +1,95 @@
-import { collection, getFirestore, addDoc } from "firebase/firestore"
-import { Button, Card } from "react-bootstrap"
+
+import { useState } from "react"
+
 import { Link } from "react-router-dom"
 import { useCartContext } from "../../context/CartContext"
+import {  useNavigate } from 'react-router-dom';
+import CartList from "../CartList/CartList"
+import alert from '../../../assets/img/alert.svg'
+import orderSentImg from '../../../assets/img/order_sent.svg'
+
+import './cart.css'
 
 
 
 const Cart = () => {
 
-  const { cartList, vaciarCart, deleteItem, precioTotal } = useCartContext()
+  const {orderId, createOrder, cartList} = useCartContext();
+  const [orderSent, setOrderSent] = useState(false)
+  let arrow = ">"
+  const history = useNavigate()
+  const goBack = "<< GO BACK"
+  const goBackHandle = ()=>{history(-1)}
 
-  const buyer = [{
-    name : "Jose Perez",
-    phone : "155136512",
-    email: "sdfsd@fdsfs.com"
-  }
-  ]
+  function sendOrderManage(costumerData) {
+      setOrderSent(true);
+      createOrder(costumerData);
+    }
 
-  const generarOrden =()=>{
-    
-    let orden = {}
-
-    orden.buyer = {name: 'Juan', email :'juan@asd.com', phone: '56421654'}
-    orden.total = precioTotal()
-
-    orden.items = cartList.map(cartItem => {
-      const id = cartItem.id
-      const nombre = cartItem.description
-      const precio = orden.total
-
-      return {id, nombre, precio}
-
-
-      })
-      
-      
-      // crear
-      const db = getFirestore()
-      const queryCollection = collection(db, 'orders')
-      addDoc(queryCollection, orden)
-        .then(resp => console.log(resp))
-        .catch(err => console.log(err))
-        .finally(()=>vaciarCart())
-
-      //update
-      // const db = getFirestore()
-      // const queryItem = doc(db, 'items', 'OZHNws2Ej0JvAYYQE2tH')
-      // updateDoc (queryItem, stock: 99)
-
-
-
-  }
   
+    return (
+    <div className='cartContainer'>
+    {cartList&&
+    
+    <div>
+            <h1 className='cartTitle'>SHOPPING CART {arrow}</h1>
+            <div className='orderSent'>            
+                {orderSent && 
+                <>
+                  <div className='sendContainer'>
+                      <img className='sentImg' src={orderSentImg}/>
 
-  return (
+                      <h3 className="congrats">Congrats! The purchase was successful.</h3>
+                        
+                      <h3 className="orderStyle">We are preparing your order. </h3>
+                      <h3 className="sendStyle">Your traking number is <span className="idColor">{orderId}</span></h3> 
+                      <h3 className="orderStyle">Please check your email for further details. </h3>
+                      <h3 className="orderStyle">Thanks for shopping with us :) </h3>
+                       <Link to='/products'>
+                <button className='goShoppingBtn'>SHOP AGAIN!</button>
+              </Link>
+
+              <h2 className='goBackBtn' onClick={goBackHandle} >
+                        {goBack}
+                    </h2>
+                
+                  </div>
+                </>
+                }   
+            </div>
+
+            <div>
+                <CartList sendOrderManage={sendOrderManage}/>
+            </div>
+
+        </div>
+
+        }
+    {cartList=='' && orderSent==false &&
     <>
-      <section>
-        <h1>CARRITO</h1>
+
         
-        {cartList ? 
+        <div className='emptyCartDiv'>
+              <img className='imgAlert' src={alert} />
+             <p>OH NO! Your cart it’s empty. </p><p> Looks like you haven’t added anything to your cart yet.</p>
 
-        (cartList.map(item => {
-
-          return (
-            <div key={item.id} >
-
-              <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={item.pictureUrl} />
-                <Card.Body>
-                  <Card.Title><h2>{item.description}</h2></Card.Title>
-                  <Card.Text>
-                    <h3>Cantidad seleccionada: {item.cantidad}</h3>
-                    <h3>Precio unitario: ${item.price}</h3>
-                    <h3>Subtotal: {item.cantidad*item.price}</h3>
-                  </Card.Text>
-
-                  <Button variant="outline-danger" onClick={()=>deleteItem(item.id)}>X</Button>
-
-                </Card.Body>
-              </Card>
-
-            </div>);
-        }))
-          
-        
-        : <p>cargando productos</p>
-
-        }
-
-
-        {cartList.length ?
-
-          (
-            <>
-              <h2 >
-                Precio total: {precioTotal()}
-              </h2>
-                   
-              <Button variant="outline-danger"
-                      className="button-primary button-padding"
-                      onClick={vaciarCart}
-              >
-                  Vaciar Carrito
-              </Button>
-
-              <Link to='/'>
-                  <Button variant="success">Seguir comprando</Button>
+              <Link to='/products'>
+                <button className='goShoppingBtn'>Start Shopping!</button>
               </Link>
 
-              <Button onClick={generarOrden}>Finalizar compra</Button>
-
-            </>
-          )
-
-
-          :
-            <>
-              <p>No hay productos en el carrito</p>
-
-              <Link to='/'>
-                <Button>Ir de compras!</Button>
-              </Link>
-
-            </>
-
-        }
-      </section>
-
+              <h2 className='goBackBtn' onClick={goBackHandle} >
+                        {goBack}
+                    </h2>
+        
+        </div>
     </>
-  )
+  }
+    </div>
+    
+    )
+    
+ 
 }
+
 
 export default Cart
