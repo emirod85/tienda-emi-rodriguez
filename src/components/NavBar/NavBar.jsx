@@ -48,9 +48,9 @@ const NavBar = () => {
                         <NavDropdown className='navStyle dropdownStyle' title="CATEGORIES" id="basic-nav-dropdown">
                             <NavDropdown.Item>
                                 <NavLink className='navStyle' to={'/category/Vinyl edition'}>
-                                    <div>
+                                  
                                         Vinyls
-                                    </div>
+                                 
                                 </NavLink>
 
                             </NavDropdown.Item>
@@ -68,7 +68,7 @@ const NavBar = () => {
                             </NavDropdown.Item>
 
                             <NavDropdown.Item>
-                                <NavLink className='navStyle' to={'/category/CD´s'}>
+                                <NavLink className='navStyle' to={'/category/CD edition'}>
                                     CDs
                                 </NavLink>
                             </NavDropdown.Item>
@@ -90,31 +90,14 @@ const NavBar = () => {
                                     Others
                                 </NavLink>
                             </NavDropdown.Item>
-
-                            <NavDropdown.Item>
-                                <NavLink className='navStyle' to={'/category/remeras'}>
-                                    Remeras
-                                </NavLink>
-                            </NavDropdown.Item>
-
-                            <NavDropdown.Item >
-                                <NavLink className='navStyle' to={'/category/gorras'}>
-                                    Gorras
-                                </NavLink>
-                            </NavDropdown.Item>
-
-                            <NavDropdown.Item >
-                                <NavLink className='navStyle' to={'/category/pantalones'}>
-                                    Pantalones
-                                </NavLink>
-                            </NavDropdown.Item>
                         
 
                         </NavDropdown>
                         
                         <Nav.Link >
                             <NavLink className='navStyle' to={'/'}>
-                                CONTACT                            </NavLink>
+                                CONTACT                            
+                            </NavLink>
                         </Nav.Link>
                     </Nav>
                     
