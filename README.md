@@ -19,4 +19,5 @@
 1.  React-router-dom v. 6.3.0: Colección de componentes que facilitan la navegación entre páginas de React.
 
 - ### Deploy
-  El deploy del sitio fue realizado en Netlify.
+  El deploy del sitio fue realizado en Netlify con el siguiente link:
+  https://vinilostore.netlify.app/
